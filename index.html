@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
         <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
         <link rel="stylesheet" href="/Styles/styles.css">
-        <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script> 
+        <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
         <title>Xkool eShop</title>
     </head>
     <body>
@@ -46,8 +46,8 @@
                             <span v-for="n in 5 - program.rating">☆</span>
                         </div>                        
 
-                        <span v-if="itemsLeft(program) === 0">All out!</span>
-                        <span v-else-if="itemsLeft(program) < 5">Only {{ itemsLeft(program) }} left!</span>
+                        <span v-if="itemsLeft(program) === 0" id="allout">All out!</span>
+                        <span v-else-if="itemsLeft(program) <= 5" id="left">Only {{ itemsLeft(program) }} left!</span>
                         <span v-else>Spots Available!</span>
                     </div>
                 </div>
@@ -59,69 +59,12 @@
                     <p><strong>Last Name:</strong> <input v-model.trim="order.lastName"></p>
                     <p><strong>Address:</strong> <input v-model="order.address"></p>
                     <p><strong>City:</strong> <input v-model="order.city"></p>
-                    <p><strong>State:</strong> 
-                        <select v-model="order.state">
-                            <option disabled value="">State</option>
-                            <option v-bind:value="states.AL">AL</option>
-                            <option v-bind:value="states.CA">CA</option>
-                        </select>
-                    </p>
+                    <p><strong>State:</strong><input v-model="order.state"></p>
                     <p><strong>Zip:</strong> <input v-model="order.zip"></p>
                     <p><button @click="submitCheckOut">Place Order</button></p>
                 </div>
             </main>
         </div>
-    
-    <script>
-        let xkoolWebstore = new Vue({
-            el: '#xkool-webstore',
-            data: {
-                showProduct: true,
-                cart: [],
-                products: [
-                    { id: 1, title: 'Beginner Piano Lessons', description: 'Learn the basics of piano playing.', price: 200, image: '/Media/Programs/piano.jpg', availableInventory: 10, rating: 4 },
-                    { id: 2, title: 'Advanced Math Tutoring', description: 'Master advanced math concepts.', price: 250, image: '/Media/Programs/math.jpg', availableInventory: 28, rating: 5 },
-                    { id: 3, title: 'Soccer Skills for Kids', description: 'Enhance soccer skills with top coaches.', price: 150, image: '/Media/Programs/soccer.jpg', availableInventory: 15, rating: 4 },
-                ],
-                order: {
-                    firstName: "",
-                    lastName: "",
-                    address: "",
-                    city: "",
-                    state: "",
-                    zip: "",
-                },
-                states: {
-                    AL: "Alabama",
-                    CA: "California",
-                }
-            },
-            methods: {
-                addItemtoCart(program) {
-                    this.cart.push(program.id);
-                },
-                showCheckOut() {
-                    this.showProduct = !this.showProduct;
-                },
-                submitCheckOut() {
-                    alert("Order placed successfully!");
-                },
-                canAddtoCart(program) {
-                    return program.availableInventory > this.cartCount(program.id);
-                },
-                cartCount(id) {
-                    return this.cart.filter(itemId => itemId === id).length;
-                },
-                itemsLeft(program) {
-                    return program.availableInventory - this.cartCount(program.id);
-                }
-            },
-            computed: {
-                sortedPrograms() {
-                    return this.products.sort((a, b) => a.price - b.price);
-                }
-            }
-        });
-    </script>
+        <script src="/Scripts/script.js"></script>
     </body>
 </html>
