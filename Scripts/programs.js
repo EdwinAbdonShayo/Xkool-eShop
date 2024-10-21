@@ -5,7 +5,7 @@ let programs = [
         description: "Learn the basics of piano playing.",
         price: 2000,
         image: "/Media/Programs/piano.jpg",
-        availableInventory: 10,
+        availableInventory: 5,
         rating: 4
     },
     {
@@ -14,7 +14,7 @@ let programs = [
         description: "Master advanced math concepts.",
         price: 2500,
         image: "/Media/Programs/math.jpg",
-        availableInventory: 28,
+        availableInventory: 5,
         rating: 5
     },
     {
@@ -23,7 +23,7 @@ let programs = [
         description: "Enhance soccer skills with top coaches.",
         price: 1500,
         image: "/Media/Programs/soccer.jpg",
-        availableInventory: 15,
+        availableInventory: 5,
         rating: 4
     },
     {
@@ -32,7 +32,7 @@ let programs = [
         description: "Learn French from native speakers.",
         price: 1800,
         image: "/Media/Programs/french.jpg",
-        availableInventory: 20,
+        availableInventory: 5,
         rating: 4
     },
     {
@@ -41,7 +41,7 @@ let programs = [
         description: "Learn to play the guitar with ease.",
         price: 2200,
         image: "/Media/Programs/guitar.jpg",
-        availableInventory: 12,
+        availableInventory: 5,
         rating: 4
     },
     {
@@ -50,7 +50,7 @@ let programs = [
         description: "Conduct fun and educational science experiments.",
         price: 1000,
         image: "/Media/Programs/science.jpg",
-        availableInventory: 25,
+        availableInventory: 5,
         rating: 5
     },
     {
@@ -59,7 +59,7 @@ let programs = [
         description: "Improve flexibility and balance with yoga.",
         price: 1200,
         image: "/Media/Programs/yoga.jpg",
-        availableInventory: 18,
+        availableInventory: 5,
         rating: 4
     },
     {
@@ -68,7 +68,7 @@ let programs = [
         description: "Explore your creativity with art classes.",
         price: 2500,
         image: "/Media/Programs/art.jpg",
-        availableInventory: 15,
+        availableInventory: 5,
         rating: 4
     },
     {
@@ -77,7 +77,7 @@ let programs = [
         description: "Improve strategic thinking with chess.",
         price: 800,
         image: "/Media/Programs/chess.jpg",
-        availableInventory: 20,
+        availableInventory: 5,
         rating: 4
     },
     {
@@ -86,7 +86,7 @@ let programs = [
         description: "Learn popular dance styles with experienced instructors.",
         price: 2000,
         image: "/Media/Programs/dance.jpg",
-        availableInventory: 12,
+        availableInventory: 5,
         rating: 4
     },
     {
@@ -95,7 +95,7 @@ let programs = [
         description: "Learn to cook with experienced chefs.",
         price: 2200,
         image: "/Media/Programs/cooking.jpg",
-        availableInventory: 18,
+        availableInventory: 5,
         rating: 4
     },
     {
@@ -104,7 +104,7 @@ let programs = [
         description: "Improve your photography skills with experts.",
         price: 2500,
         image: "/Media/Programs/photography.jpg",
-        availableInventory: 15,
+        availableInventory: 5,
         rating: 4
     },
     {
@@ -113,7 +113,7 @@ let programs = [
         description: "Learn karate techniques and self-defense.",
         price: 1800,
         image: "/Media/Programs/karate.jpg",
-        availableInventory: 20,
+        availableInventory: 5,
         rating: 4
     },
     {
@@ -122,7 +122,7 @@ let programs = [
         description: "Improve your singing voice with experienced instructors.",
         price: 2000,
         image: "/Media/Programs/vocals.jpg",
-        availableInventory: 12,
+        availableInventory: 5,
         rating: 4
     },
     {
@@ -131,7 +131,7 @@ let programs = [
         description: "Improve your basketball skills with top coaches.",
         price: 1500,
         image: "/Media/Programs/basketball.jpg",
-        availableInventory: 15,
+        availableInventory: 5,
         rating: 4
     },
     {
@@ -140,7 +140,7 @@ let programs = [
         description: "Learn the basics of coding in a fun and interactive way.",
         price: 1200,
         image: "/Media/Programs/coding.jpg",
-        availableInventory: 20,
+        availableInventory: 5,
         rating: 5
     },
     {
@@ -149,7 +149,7 @@ let programs = [
         description: "Build and program your own robots.",
         price: 2500,
         image: "/Media/Programs/robotics.jpg",
-        availableInventory: 10,
+        availableInventory: 5,
         rating: 4
     },
     {
@@ -158,7 +158,7 @@ let programs = [
         description: "Learn to play the guitar with ease.",
         price: 2200,
         image: "/Media/Programs/guitar.jpg",
-        availableInventory: 15,
+        availableInventory: 5,
         rating: 4
     },
     {
@@ -167,7 +167,7 @@ let programs = [
         description: "Explore your artistic talents with painting classes.",
         price: 1800,
         image: "/Media/Programs/painting.jpg",
-        availableInventory: 18,
+        availableInventory: 5,
         rating: 4
     },
     {
@@ -176,7 +176,7 @@ let programs = [
         description: "Learn to swim safely and confidently.",
         price: 1000,
         image: "/Media/Programs/swimming.jpg",
-        availableInventory: 25,
+        availableInventory: 5,
         rating: 5
     }
 ]

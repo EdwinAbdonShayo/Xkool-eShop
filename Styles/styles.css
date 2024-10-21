@@ -1,4 +1,5 @@
 body {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: 'Comfortaa';
@@ -33,6 +34,17 @@ nav a {
     font-weight: bold;
 }
 
+header button {
+    background-color: #5c6bc0;
+    color: white;
+    font-family: 'Comfortaa';
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
 main {
     padding: 40px;
 }
@@ -41,7 +53,12 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
+
 .program-card {
     background-color: white;
     border-radius: 10px;
@@ -49,6 +66,7 @@ main {
     box-shadow: 0 4px 8px rgba(248, 50, 0, 0.1);
     text-align: center;
     transition: .3s ease-in-out;
+    width: 20%;
 }
 
 .program-card:hover {
