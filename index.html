@@ -7,6 +7,7 @@
         <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
         <link rel="stylesheet" href="/Styles/styles.css">
         <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
+        <script src="/Scripts/programs.js"></script>
         <title>Xkool eShop</title>
     </head>
     <body>
@@ -37,7 +38,7 @@
                         <img :src="program.image" alt="Program Image">
                         <h2>{{ program.title }}</h2>
                         <p>{{ program.description }}</p>
-                        <p>Price: ${{ program.price }}</p>
+                        <p>Price: Rs{{ program.price }}</p>
                         <button v-if="canAddtoCart(program)" @click="addItemtoCart(program)">Enroll</button>
                         <button v-else :disabled="true">Enroll</button>
 
