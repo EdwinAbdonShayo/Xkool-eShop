@@ -35,6 +35,27 @@
             </header>
     
             <main>
+                <div class="filSor">
+                    <div class="filter">
+                        <select name="filters" id="filters">
+                            <option value="sports">Sports</option>
+                            <option value="entertinment">Entertinment</option>
+                            <option value="programming">Programming</option>
+                            <option value="academic">Academic</option>
+                        </select>
+                    </div>
+                    <div class="sort">
+                        <select name="sorts" id="sorts">
+                            <option value="nameAsc">Names (A - Z)</option>
+                            <option value="nameDes">Names (Z - A)</option>
+                            <option value="priceAsc">Price (Low - High)</option>
+                            <option value="priceDes">Price (High - Low)</option>
+                            <option value="ratingL">Rating (Lowest)</option>
+                            <option value="ratingH">Rating (Highest)</option>
+                        </select>
+                        
+                    </div>
+                </div>
                 <!-- Product Grid -->
                 <div class="program-container" v-if="showProduct">
                     <div class="program-card" v-for="program in sortedPrograms">
