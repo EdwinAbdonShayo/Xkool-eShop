@@ -4,6 +4,7 @@ body {
     padding: 0;
     font-family: 'Comfortaa';
     background: hsla(0, 0%, 90%, 0.75);
+    overflow-x: hidden;
 }
 
 ::-webkit-scrollbar{
@@ -28,7 +29,7 @@ header {
     background: hsla(17, 100%, 45%, .9);
     color: hsla(0, 0%, 100%, 0.75);
     position: fixed;
-    width: 100dvw;
+    width: 100vw;
     box-sizing: border-box;
     z-index: 1;
 }
@@ -36,6 +37,7 @@ header {
 .logo img {
     width: 100px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 nav {
@@ -49,11 +51,21 @@ nav a {
     color: hsla(0, 0%, 100%, 0.75);
     font-size: 1.1rem;
     font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+nav a:hover {
+    color: hsla(0, 0%, 100%, 1);
 }
 
 button {
     background-color: hsl(224, 64%, 57%);
     font-family: "Comfortaa";
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: hsl(224, 64%, 50%);
 }
 
 header button {
@@ -118,6 +130,7 @@ select {
 
 .program-card:hover {
     scale: 1.05;
+    box-shadow: 0 8px 16px rgba(248, 50, 0, 0.2);
 }
 
 .program-card img {
