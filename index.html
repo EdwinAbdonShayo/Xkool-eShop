@@ -17,7 +17,7 @@
                     <img src="/Media/logo.jpg" alt="eShop Logo">
                 </div>
                 <nav>
-                    <a href="#">Programs</a>
+                    <a href="#">Home</a>
                     <div>|</div>
                     <a href="#">About Us</a>
                     <div>|</div>
@@ -35,21 +35,21 @@
             </header>
     
             <main>
-                <div class="filSor" v-if="showProduct">
+                <div class="filSor" v-if="showPage">
                     <div class="filter">
                         <label for="filter">Select Filter</label>
                         <select name="filters" id="filters">
                             <option value="">Default</option>
                             <option value="sports">Sports</option>
-                            <option value="entertinment">Entertinment</option>
+                            <option value="music">Music</option>
                             <option value="art">Arts</option>
-                            <option value="stem">STEM</option>
+                            <option value="education">STEM</option>
                         </select>
                     </div>
                     <div class="sort">
                         <label for="sort">Select Sort</label>
-                        <select name="sorts" id="sorts">
-                            <option value="default">Default</option>
+                        <select name="sorts" id="sorts" v-model="selectedSort">
+                            <option value="">Default</option>
                             <option value="nameAsc">Names (A - Z)</option>
                             <option value="nameDes">Names (Z - A)</option>
                             <option value="priceAsc">Price (Low - High)</option>
@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <!-- Product Grid -->
-                <div class="program-container" v-if="showProduct">
+                <div class="program-container" v-if="showPage">
                     <div class="program-card" v-for="program in sortedPrograms">
                         <img :src="program.image" alt="Program Image">
                         <h2>{{ program.title }}</h2>

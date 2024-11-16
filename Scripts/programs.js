@@ -6,7 +6,8 @@ let programs = [
         price: 2000,
         image: "/Media/Programs/piano.jpg",
         availableInventory: 10,
-        rating: 4
+        rating: 3,
+        category: "Music"
     },
     {
         id: 2,
@@ -15,7 +16,8 @@ let programs = [
         price: 2500,
         image: "/Media/Programs/math.jpg",
         availableInventory: 7,
-        rating: 5
+        rating: 4,
+        category: "Education"
     },
     {
         id: 3,
@@ -24,7 +26,8 @@ let programs = [
         price: 1500,
         image: "/Media/Programs/soccer.jpg",
         availableInventory: 5,
-        rating: 4
+        rating: 5,
+        category: "Sports"
     },
     {
         id: 4,
@@ -33,7 +36,8 @@ let programs = [
         price: 1800,
         image: "/Media/Programs/french.jpg",
         availableInventory: 6,
-        rating: 4
+        rating: 3,
+        category: "Education"
     },
     {
         id: 5,
@@ -42,7 +46,8 @@ let programs = [
         price: 2200,
         image: "/Media/Programs/guitar.jpg",
         availableInventory: 5,
-        rating: 4
+        rating: 5,
+        category: "Music"
     },
     {
         id: 6,
@@ -51,7 +56,8 @@ let programs = [
         price: 1000,
         image: "/Media/Programs/science.jpg",
         availableInventory: 9,
-        rating: 5
+        rating: 4,
+        category: "Education"
     },
     {
         id: 7,
@@ -60,7 +66,8 @@ let programs = [
         price: 1200,
         image: "/Media/Programs/yoga.jpg",
         availableInventory: 5,
-        rating: 4
+        rating: 2,
+        category: "Sports"
     },
     {
         id: 8,
@@ -69,7 +76,8 @@ let programs = [
         price: 2500,
         image: "/Media/Programs/art.jpg",
         availableInventory: 7,
-        rating: 4
+        rating: 5,
+        category: "Art"
     },
     {
         id: 9,
@@ -78,7 +86,8 @@ let programs = [
         price: 800,
         image: "/Media/Programs/chess.jpg",
         availableInventory: 5,
-        rating: 4
+        rating: 3,
+        category: "Education"
     },
     {
         id: 10,
@@ -87,7 +96,8 @@ let programs = [
         price: 2000,
         image: "/Media/Programs/dance.jpg",
         availableInventory: 9,
-        rating: 4
+        rating: 4,
+        category: "Sports"
     },
     {
         id: 11,
@@ -96,7 +106,8 @@ let programs = [
         price: 2200,
         image: "/Media/Programs/cooking.jpg",
         availableInventory: 6,
-        rating: 4
+        rating: 5,
+        category: "Education"
     },
     {
         id: 12,
@@ -105,7 +116,8 @@ let programs = [
         price: 2500,
         image: "/Media/Programs/photography.jpg",
         availableInventory: 5,
-        rating: 4
+        rating: 4,
+        category: "Art"
     },
     {
         id: 13,
@@ -114,7 +126,8 @@ let programs = [
         price: 1800,
         image: "/Media/Programs/karate.jpg",
         availableInventory: 8,
-        rating: 4
+        rating: 2,
+        category: "Sports"
     },
     {
         id: 14,
@@ -123,7 +136,8 @@ let programs = [
         price: 2000,
         image: "/Media/Programs/vocals.jpg",
         availableInventory: 7,
-        rating: 4
+        rating: 5,
+        category: "Music"
     },
     {
         id: 15,
@@ -132,7 +146,8 @@ let programs = [
         price: 1500,
         image: "/Media/Programs/basketball.jpg",
         availableInventory: 6,
-        rating: 4
+        rating: 4,
+        category: "Sports"
     },
     {
         id: 16,
@@ -141,7 +156,8 @@ let programs = [
         price: 1200,
         image: "/Media/Programs/coding.jpg",
         availableInventory: 8,
-        rating: 5
+        rating: 3,
+        category: "Education"
     },
     {
         id: 17,
@@ -150,7 +166,8 @@ let programs = [
         price: 2500,
         image: "/Media/Programs/robotics.jpg",
         availableInventory: 9,
-        rating: 4
+        rating: 4,
+        category: "Education"
     },
     {
         id: 18,
@@ -159,7 +176,8 @@ let programs = [
         price: 2200,
         image: "/Media/Programs/guitar.jpg",
         availableInventory: 10,
-        rating: 4
+        rating: 5,
+        category: "Music"
     },
     {
         id: 19,
@@ -168,7 +186,8 @@ let programs = [
         price: 1800,
         image: "/Media/Programs/painting.jpg",
         availableInventory: 8,
-        rating: 4
+        rating: 4,
+        category: "Art"
     },
     {
         id: 20,
@@ -177,6 +196,7 @@ let programs = [
         price: 1000,
         image: "/Media/Programs/swimming.jpg",
         availableInventory: 8,
-        rating: 5
+        rating: 3,
+        category: "Sports"
     }
-]
+];

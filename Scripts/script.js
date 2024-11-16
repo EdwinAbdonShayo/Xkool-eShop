@@ -3,9 +3,11 @@
 let xkoolWebstore = new Vue({
     el: '#xkool-webstore',
     data: {
-        showProduct: true,
+        showPage: true,
         cart: [],
-        products: programs,
+        programs: programs,
+        selectedSort: "",
+        selectedFilter: "",
         order: {
             firstName: "",
             lastName: "",
@@ -23,7 +25,7 @@ let xkoolWebstore = new Vue({
             this.cart.splice(this.cart.indexOf(program.id), 1);
         },
         showCheckOut() {
-            this.showProduct = !this.showProduct;
+            this.showPage = !this.showPage;
         },
         submitCheckOut() {
             alert("Order placed successfully!");
@@ -43,12 +45,26 @@ let xkoolWebstore = new Vue({
     },
     computed: {
         sortedPrograms() {
-            return this.products.sort((a, b) => a.price - b.price);
+            if (this.selectedSort === "nameAsc") {
+                return [...this.programs].sort((a, b) => a.title.localeCompare(b.title));
+            } else if (this.selectedSort === "nameDes") {
+                return [...this.programs].sort((a, b) => b.title.localeCompare(a.title));
+            } else if (this.selectedSort === "priceAsc") {
+                // return [...this.programs].sort((a, b) => a.price - b.price);
+                return this.programs.sort((a, b) => a.price - b.price);
+            } else if (this.selectedSort === "priceDes") {
+                return [...this.programs].sort((a, b) => b.price - a.price);
+            } else if (this.selectedSort === "ratingL") {
+                return [...this.programs].sort((a, b) => a.rating - b.rating);
+            } else if (this.selectedSort === "ratingH") {
+                return [...this.programs].sort((a, b) => b.rating - a.rating);
+            }
+            return this.programs;
         },
         // Returns an array of detailed program objects currently in the cart
         cartDetails() {
             return this.cart.map(cartItemId => {
-                return this.products.find(program => program.id === cartItemId);
+                return this.programs.find(program => program.id === cartItemId);
             });
         },
         // Calculates the total price of all items in the cart
