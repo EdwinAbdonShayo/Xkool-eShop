@@ -69,6 +69,8 @@
                         <p>Price: Rs{{ program.price }}</p>
                         <button v-if="canAddtoCart(program)" @click="addItemtoCart(program)">Enroll</button>
                         <button v-else :disabled="true">Enroll</button>
+                        <button v-if="canRemovefromCart(program)" @click="removeFromCart(program)">Disenroll</button>
+                        <button v-else :disabled="true">Disenroll</button>
 
                         <div>
                             <span v-for="n in program.rating">★</span>
