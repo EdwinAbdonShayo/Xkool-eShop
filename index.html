@@ -28,7 +28,7 @@
                         Cart ({{ cart.length }})
                         <span class="fa-solid fa-cart-plus"></span>
                     </button>
-                    <button v-else>
+                    <button v-else @click="showCheckOut">
                         Cart <span class="fa-solid fa-cart-plus"></span>
                     </button>
                 </div>
@@ -42,8 +42,8 @@
                             <option value="">Default</option>
                             <option value="sports">Sports</option>
                             <option value="entertinment">Entertinment</option>
-                            <option value="programming">Programming</option>
-                            <option value="academic">Academic</option>
+                            <option value="art">Arts</option>
+                            <option value="stem">STEM</option>
                         </select>
                     </div>
                     <div class="sort">
@@ -85,20 +85,38 @@
     
                 <!-- Checkout Section -->
                 <div v-else id="checkout">
+                    <div class="cartSum">
+                        <h2>Cart Summary</h2>
+                        <ul>
+                            <!-- Loop through cart items and display details -->
+                            <li v-for="program in cartDetails" :key="program.id">
+                                <p>Program ID: {{ program.id }} </p>
+                                <p><strong>{{ program.title }}</strong></p>
+                                <p>Price: Rs{{ program.price }}</p>
+                                <button @click="removeFromCart(program)">Remove</button>
+                            </li>
+                        </ul>
+                        <p v-if="cartDetails.length === 0">Your cart is empty!</p>
+                        <hr>
+                        <h3>Total: Rs {{ totalPrice }}</h3>
+                    </div>
                     <form>
                         <h1>Checkout</h1>
-                        <p><strong>Full Name</strong> <input v-model.trim="order.firstName"></p>
+                        <p><strong>First Name</strong> <input v-model.trim="order.firstName"></p>
                         <p><strong>Last Name</strong> <input v-model.trim="order.lastName"></p>
                         <p><strong>Address</strong> <input v-model="order.address"></p>
                         <p><strong>City</strong> <input v-model="order.city"></p>
-                        <p><button @click="submitCheckOut">Place Order</button></p>
                     </form>
-                    <div class="details">
-                        <h1>Your Details</h1>
-                        <p>Name: <strong> {{ order.firstName }} {{ order.lastName }} </strong></p>
-                        <p>Address: <strong> {{ order.address }}</strong></p>
-                        <p>City: <strong> {{ order.city }} </strong></p>
+                    <div class="detail">
+                        <div class="details">
+                            <h1>Your Details</h1>
+                            <p>Name: <strong> {{ order.firstName }} {{ order.lastName }} </strong></p>
+                            <p>Address: <strong> {{ order.address }}</strong></p>
+                            <p>City: <strong> {{ order.city }} </strong></p>
+                        </div>                        
+                        <button @click="submitCheckOut">Place Order</button>
                     </div>
+
                 </div>
             </main>
         </div>

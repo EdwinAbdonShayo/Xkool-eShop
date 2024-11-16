@@ -59,22 +59,24 @@ nav a:hover {
 }
 
 button {
-    background-color: hsl(224, 64%, 57%);
+    background-color: hsl(224, 64%, 60%);
     font-family: "Comfortaa";
     transition: background-color 0.2s ease;
-}
-
-button:hover {
-    background-color: hsl(224, 64%, 50%);
-}
-
-header button {
     color: white;
     border: none;
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
+    transition: background-color .7s;
+}
+
+button:hover {
+    background-color: hsl(224, 64%, 40%);
+}
+
+button:disabled {
+    background-color: grey;
 }
 
 main {
@@ -151,19 +153,6 @@ select {
     color: #555;
 }
 
-.program-card button {
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.program-card button:disabled {
-    background-color: grey;
-}
-
 #allout {
     color: hsla(0, 100%, 45%, 0.75);
     font-weight: 600;
@@ -182,48 +171,66 @@ select {
 #checkout {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: start;
-    padding: 0;
+    align-items: flex-start;
+    justify-content: space-evenly; 
+    padding: 20px;
+    flex-wrap: wrap; 
+    gap: 20px; 
 }
 
 form {
     margin: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 50%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%; 
+    max-width: 300px;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 form p {
     display: flex;
     flex-direction: column;
-    width: 250%;
-    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+    align-items: flex-start;
 }
 
 form input {
-    height: 30px;
+    height: 40px;
     border: 1px solid hsla(17, 100%, 45%, 0.75);
     border-radius: 10px;
-    width: 15%;
-    padding-inline: .5%;
-}
-
-form button {
-    width: auto;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+    width: 100%;
+    max-width: 300px; 
+    padding: 5px; 
     font-size: 1rem;
+    box-sizing: border-box;
 }
 
 .details {
-    /* display: flex; */
-    width: 30%;
-    padding: 1%;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px; 
     background: hsla(17, 100%, 45%, 0.4);
     border-radius: 15px;
+    box-sizing: border-box;
+    flex-grow: 1; 
+}
+
+.details h1 {
+    margin-bottom: 15px;
+}
+
+.details p {
+    margin: 5px 0;
+}
+
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
 }
