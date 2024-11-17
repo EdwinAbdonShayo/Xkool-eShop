@@ -5,7 +5,7 @@ let xkoolWebstore = new Vue({
     data: {
         showPage: true,
         cart: [],
-        programs: programs,
+        programs: [],
         selectedSort: "",
         selectedFilter: "",
         order: {
@@ -17,11 +17,28 @@ let xkoolWebstore = new Vue({
     },
     methods: {
         addItemtoCart(program) {
-            this.cart.push(program.id);
+            const existingItem = this.cart.find(item => item.id === program.id);
+            if (existingItem) {
+                existingItem.count += 1;
+            } else {
+                this.cart.push( {id: program.id, count: 1} );
+            }            
         },
         removeFromCart(program) {
-            this.cart.splice(this.cart.indexOf(program.id), 1);
-        },
+            // this.cart.splice(this.cart.indexOf(program.id), 1);
+            const existingItem = this.cart.find(item => item.id === program.id);
+            if (existingItem) {
+                if (existingItem.count > 1) {
+                    existingItem.count -= 1;
+                } else {
+                    // this.cart.splice(this.cart.indexOf(program.id), 1);
+                    this.cart = this.cart.filter(item => item.id !== program.id);
+                }
+            }
+            if (this.cart.length === 0) {
+                this.showPage = true;
+            }
+        },        
         showCheckOut() {
             this.showPage = !this.showPage;
         },
@@ -29,19 +46,29 @@ let xkoolWebstore = new Vue({
             alert("Order placed successfully!");
         },
         canAddtoCart(program) {
-            return program.availableSpaces > this.cartCount(program.id);
+            return program.availableSpaces > this.cartItemCount(program.id);
         },
         canRemovefromCart(program) {
-            return this.cartCount(program.id) > 0;
+            return this.cartItemCount(program.id) > 0;
         },
-        cartCount(id) {
-            return this.cart.filter(itemId => itemId === id).length;
+        cartCount() {
+            // Sum up the 'count' property of each item in the cart
+            return this.cart.reduce((total, cartItem) => total + cartItem.count, 0);
+        },
+        cartItemCount(id) {
+            // return this.cart.filter(itemId => itemId === id).length;
+            const item = this.cart.find(cartItem => cartItem.id === id);
+            return item ? item.count : 0;
         },
         itemsLeft(program) {
-            return program.availableSpaces - this.cartCount(program.id);
+            return program.availableSpaces - this.cartItemCount(program.id);
         }
     },
     computed: {
+        count1() {
+            // Total count of items in the cart
+            return this.cartCount();
+        },
         sortedPrograms() {
             if (this.selectedSort === "nameAsc") {
                 return [...this.programs].sort((a, b) => a.title.localeCompare(b.title));
@@ -61,17 +88,37 @@ let xkoolWebstore = new Vue({
         },
         // Returns an array of detailed program objects currently in the cart
         cartDetails() {
-            return this.cart.map(cartItemId => {
-                return this.programs.find(program => program.id === cartItemId);
-            });
+            return this.cart.map(cartItem => {
+                const program = this.programs.find(program => program.id === cartItem.id);
+                if (program) {
+                    return { ...program, count: cartItem.count }; // Include count in the details
+                }
+                return null;
+            }).filter(item => item !== null);
+            // return this.cart.map(cartItemId => {
+            //     return this.programs.find(program => program.id === cartItemId);
+            // });
         },
         // Calculates the total price of all items in the cart
         totalPrice() {
-            return this.cartDetails.reduce((total, program) => total + program.price, 0);
+            return this.cartDetails.reduce((total, program) => total + (program.price * program.count), 0);
         }
+    },
+    created() {
+        fetch('http://localhost:5454/programs')
+            .then( res => {
+                if (!res.ok) {
+                throw new Error (`Status: {res.status}`);
+                }
+                return res.json();
+            })
+            .then(data => {
+                this.programs = data;
+                })
+            .catch(err => {
+                console.error('Error Fetching Programs', err);
+            });
     }
 });
 
-
-// App.js code  
 
