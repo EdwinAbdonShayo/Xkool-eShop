@@ -29,7 +29,7 @@ let xkoolWebstore = new Vue({
             alert("Order placed successfully!");
         },
         canAddtoCart(program) {
-            return program.availableInventory > this.cartCount(program.id);
+            return program.availableSpaces > this.cartCount(program.id);
         },
         canRemovefromCart(program) {
             return this.cartCount(program.id) > 0;
@@ -38,7 +38,7 @@ let xkoolWebstore = new Vue({
             return this.cart.filter(itemId => itemId === id).length;
         },
         itemsLeft(program) {
-            return program.availableInventory - this.cartCount(program.id);
+            return program.availableSpaces - this.cartCount(program.id);
         }
     },
     computed: {
@@ -71,3 +71,7 @@ let xkoolWebstore = new Vue({
         }
     }
 });
+
+
+// App.js code  
+

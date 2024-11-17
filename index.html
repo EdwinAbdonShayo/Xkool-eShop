@@ -27,9 +27,9 @@
                     <button @click="showCheckOut" v-if="cart.length >= 1">
                         Cart
                         <span class="fa-solid fa-cart-plus"></span>
-                        <span id="cartCount">{{ cart.length }}</span>
+                        <span id="cartCount"><strong> {{ cart.length }} </strong></span>
                     </button>
-                    <button v-else @click="showCheckOut">
+                    <button v-else>
                         Cart <span class="fa-solid fa-cart-plus"></span>
                     </button>
                 </div>
@@ -58,16 +58,16 @@
                             <option value="ratingL">Rating (Lowest)</option>
                             <option value="ratingH">Rating (Highest)</option>
                         </select>
-                        
                     </div>
                 </div>
                 <!-- Product Grid -->
                 <div class="program-container" v-if="showPage">
                     <div class="program-card" v-for="program in sortedPrograms">
                         <img :src="program.image" alt="Program Image">
-                        <h2>{{ program.title }}</h2>
+                        <h3>{{ program.title }}</h3>
                         <p>{{ program.description }}</p>
                         <p>Price: Rs{{ program.price }}</p>
+                        <p>Location: {{ program.location }}</p>
                         <button v-if="canAddtoCart(program)" @click="addItemtoCart(program)">Enroll</button>
                         <button v-else :disabled="true">Enroll</button>
                         <button v-if="canRemovefromCart(program)" @click="removeFromCart(program)">Disenroll</button>
@@ -80,7 +80,7 @@
 
                         <span v-if="itemsLeft(program) === 0" id="allout">All out!</span>
                         <span v-else-if="itemsLeft(program) <= 3" id="items3-left">Only {{ itemsLeft(program) }} spots left!</span>
-                        <span v-else id="items-left"> {{ itemsLeft(program) }} Spots Available! </span>
+                        <span v-else id="items-left">Only {{ itemsLeft(program) }} Spots Available!</span>
                     </div>
                 </div>
     
