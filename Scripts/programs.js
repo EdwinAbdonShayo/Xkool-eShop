@@ -5,9 +5,10 @@ let programs = [
         description: "Learn the basics of piano playing.",
         price: 2000,
         image: "/Media/Programs/piano.jpg",
-        availableInventory: 10,
+        availableInventory: 5,
         rating: 3,
-        category: "Music"
+        category: "Music",
+        location: "Music Hall A"
     },
     {
         id: 2,
@@ -15,9 +16,10 @@ let programs = [
         description: "Master advanced math concepts.",
         price: 2500,
         image: "/Media/Programs/math.jpg",
-        availableInventory: 7,
+        availableInventory: 5,
         rating: 4,
-        category: "Education"
+        category: "Education",
+        location: "Room 101"
     },
     {
         id: 3,
@@ -27,7 +29,8 @@ let programs = [
         image: "/Media/Programs/soccer.jpg",
         availableInventory: 5,
         rating: 5,
-        category: "Sports"
+        category: "Sports",
+        location: "Soccer Field 1"
     },
     {
         id: 4,
@@ -35,9 +38,10 @@ let programs = [
         description: "Learn French from native speakers.",
         price: 1800,
         image: "/Media/Programs/french.jpg",
-        availableInventory: 6,
+        availableInventory: 5,
         rating: 3,
-        category: "Education"
+        category: "Education",
+        location: "Room 202"
     },
     {
         id: 5,
@@ -47,7 +51,8 @@ let programs = [
         image: "/Media/Programs/guitar.jpg",
         availableInventory: 5,
         rating: 5,
-        category: "Music"
+        category: "Music",
+        location: "Music Hall B"
     },
     {
         id: 6,
@@ -55,9 +60,10 @@ let programs = [
         description: "Conduct fun and educational science experiments.",
         price: 1000,
         image: "/Media/Programs/science.jpg",
-        availableInventory: 9,
+        availableInventory: 5,
         rating: 4,
-        category: "Education"
+        category: "Education",
+        location: "Lab 3"
     },
     {
         id: 7,
@@ -67,7 +73,8 @@ let programs = [
         image: "/Media/Programs/yoga.jpg",
         availableInventory: 5,
         rating: 2,
-        category: "Sports"
+        category: "Sports",
+        location: "Yoga Studio"
     },
     {
         id: 8,
@@ -75,9 +82,10 @@ let programs = [
         description: "Explore your creativity with art classes.",
         price: 2500,
         image: "/Media/Programs/art.jpg",
-        availableInventory: 7,
+        availableInventory: 5,
         rating: 5,
-        category: "Art"
+        category: "Art",
+        location: "Art Room 4"
     },
     {
         id: 9,
@@ -87,7 +95,8 @@ let programs = [
         image: "/Media/Programs/chess.jpg",
         availableInventory: 5,
         rating: 3,
-        category: "Education"
+        category: "Education",
+        location: "Room 303"
     },
     {
         id: 10,
@@ -95,9 +104,10 @@ let programs = [
         description: "Learn popular dance styles with experienced instructors.",
         price: 2000,
         image: "/Media/Programs/dance.jpg",
-        availableInventory: 9,
+        availableInventory: 5,
         rating: 4,
-        category: "Sports"
+        category: "Sports",
+        location: "Dance Hall A"
     },
     {
         id: 11,
@@ -105,9 +115,10 @@ let programs = [
         description: "Learn to cook with experienced chefs.",
         price: 2200,
         image: "/Media/Programs/cooking.jpg",
-        availableInventory: 6,
+        availableInventory: 5,
         rating: 5,
-        category: "Education"
+        category: "Education",
+        location: "Kitchen 1"
     },
     {
         id: 12,
@@ -117,7 +128,8 @@ let programs = [
         image: "/Media/Programs/photography.jpg",
         availableInventory: 5,
         rating: 4,
-        category: "Art"
+        category: "Art",
+        location: "Photo Lab"
     },
     {
         id: 13,
@@ -125,9 +137,10 @@ let programs = [
         description: "Learn karate techniques and self-defense.",
         price: 1800,
         image: "/Media/Programs/karate.jpg",
-        availableInventory: 8,
+        availableInventory: 5,
         rating: 2,
-        category: "Sports"
+        category: "Sports",
+        location: "Martial Arts Room"
     },
     {
         id: 14,
@@ -135,9 +148,10 @@ let programs = [
         description: "Improve your singing voice with experienced instructors.",
         price: 2000,
         image: "/Media/Programs/vocals.jpg",
-        availableInventory: 7,
+        availableInventory: 5,
         rating: 5,
-        category: "Music"
+        category: "Music",
+        location: "Music Hall C"
     },
     {
         id: 15,
@@ -145,9 +159,10 @@ let programs = [
         description: "Improve your basketball skills with top coaches.",
         price: 1500,
         image: "/Media/Programs/basketball.jpg",
-        availableInventory: 6,
+        availableInventory: 5,
         rating: 4,
-        category: "Sports"
+        category: "Sports",
+        location: "Basketball Court"
     },
     {
         id: 16,
@@ -155,9 +170,10 @@ let programs = [
         description: "Learn the basics of coding in a fun and interactive way.",
         price: 1200,
         image: "/Media/Programs/coding.jpg",
-        availableInventory: 8,
+        availableInventory: 5,
         rating: 3,
-        category: "Education"
+        category: "Education",
+        location: "Computer Lab 2"
     },
     {
         id: 17,
@@ -165,9 +181,10 @@ let programs = [
         description: "Build and program your own robots.",
         price: 2500,
         image: "/Media/Programs/robotics.jpg",
-        availableInventory: 9,
+        availableInventory: 5,
         rating: 4,
-        category: "Education"
+        category: "Education",
+        location: "Lab 5"
     },
     {
         id: 18,
@@ -175,9 +192,10 @@ let programs = [
         description: "Learn to play the guitar with ease.",
         price: 2200,
         image: "/Media/Programs/guitar.jpg",
-        availableInventory: 10,
+        availableInventory: 5,
         rating: 5,
-        category: "Music"
+        category: "Music",
+        location: "Music Hall D"
     },
     {
         id: 19,
@@ -185,9 +203,10 @@ let programs = [
         description: "Explore your artistic talents with painting classes.",
         price: 1800,
         image: "/Media/Programs/painting.jpg",
-        availableInventory: 8,
+        availableInventory: 5,
         rating: 4,
-        category: "Art"
+        category: "Art",
+        location: "Art Room 7"
     },
     {
         id: 20,
@@ -195,8 +214,9 @@ let programs = [
         description: "Learn to swim safely and confidently.",
         price: 1000,
         image: "/Media/Programs/swimming.jpg",
-        availableInventory: 8,
+        availableInventory: 5,
         rating: 3,
-        category: "Sports"
+        category: "Sports",
+        location: "Swimming Pool A"
     }
 ];

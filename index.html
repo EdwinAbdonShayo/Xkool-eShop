@@ -25,8 +25,9 @@
                 </nav>
                 <div class="cart">
                     <button @click="showCheckOut" v-if="cart.length >= 1">
-                        Cart ({{ cart.length }})
+                        Cart
                         <span class="fa-solid fa-cart-plus"></span>
+                        <span id="cartCount">{{ cart.length }}</span>
                     </button>
                     <button v-else @click="showCheckOut">
                         Cart <span class="fa-solid fa-cart-plus"></span>
@@ -78,7 +79,7 @@
                         </div>                        
 
                         <span v-if="itemsLeft(program) === 0" id="allout">All out!</span>
-                        <span v-else-if="itemsLeft(program) <= 5" id="items5-left">Only {{ itemsLeft(program) }} spots left!</span>
+                        <span v-else-if="itemsLeft(program) <= 3" id="items3-left">Only {{ itemsLeft(program) }} spots left!</span>
                         <span v-else id="items-left"> {{ itemsLeft(program) }} Spots Available! </span>
                     </div>
                 </div>
@@ -102,19 +103,20 @@
                     </div>
                     <form>
                         <h1>Checkout</h1>
-                        <p><strong>First Name</strong> <input v-model.trim="order.firstName"></p>
-                        <p><strong>Last Name</strong> <input v-model.trim="order.lastName"></p>
-                        <p><strong>Address</strong> <input v-model="order.address"></p>
+                        <p><strong>Name</strong> <input v-model.trim="order.name"></p>
+                        <p><strong>Phone</strong> <input v-model.trim="order.phone" type="tel"></p>
+                        <p><strong>Address</strong> <input v-model="order.address" type="address"></p>
                         <p><strong>City</strong> <input v-model="order.city"></p>
                     </form>
                     <div class="detail">
                         <div class="details">
                             <h1>Your Details</h1>
-                            <p>Name: <strong> {{ order.firstName }} {{ order.lastName }} </strong></p>
+                            <p>Name: <strong> {{ order.name }} </strong></p>
+                            <p>Phone: <strong> {{ order.phone }} </strong></p>
                             <p>Address: <strong> {{ order.address }}</strong></p>
                             <p>City: <strong> {{ order.city }} </strong></p>
                         </div>                        
-                        <button @click="submitCheckOut">Place Order</button>
+                        <button @click="submitCheckOut">Checkout</button>
                     </div>
 
                 </div>

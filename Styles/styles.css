@@ -69,6 +69,7 @@ button {
     cursor: pointer;
     font-size: 1rem;
     transition: background-color .7s;
+    text-wrap: nowrap;
 }
 
 button:hover {
@@ -77,6 +78,13 @@ button:hover {
 
 button:disabled {
     background-color: grey;
+}
+
+#cartCount {
+    color:  hsl(224, 64%, 40%);
+    background: hsla(0, 0%, 100%, 1);
+    padding: 4%;
+    border-radius: 5px;
 }
 
 main {
@@ -158,7 +166,7 @@ select {
     font-weight: 600;
 }
 
-#items5-left {
+#items3-left {
     color: hsl(40, 100%, 45%);
     font-weight: 600;
 }

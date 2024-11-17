@@ -9,12 +9,10 @@ let xkoolWebstore = new Vue({
         selectedSort: "",
         selectedFilter: "",
         order: {
-            firstName: "",
-            lastName: "",
+            name: "",
+            phone: "",
             address: "",
             city: "",
-            state: "",
-            zip: "",
         }
     },
     methods: {
