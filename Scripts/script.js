@@ -43,7 +43,35 @@ let xkoolWebstore = new Vue({
             this.showPage = !this.showPage;
         },
         submitCheckOut() {
-            alert("Order placed successfully!");
+            // alert("Order placed successfully!");
+
+            const orderData = {
+                name: this.order.name,
+                phone: this.order.phone,
+                address: this.order.address,
+                city: this.order.city,
+                programs: this.cartDetails,
+                price: this.price,
+            };
+
+            fetch('http://localhost:5454/orders', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(orderData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                alert("Order placed successfully!");
+                this.cart = [];
+                // this.showPage = true;
+            })
+            .catch(error => {
+                console.error('Error making an order', error);
+            });
+            
         },
         canAddtoCart(program) {
             return program.availableSpaces > this.cartItemCount(program.id);
@@ -69,23 +97,70 @@ let xkoolWebstore = new Vue({
             // Total count of items in the cart
             return this.cartCount();
         },
-        sortedPrograms() {
-            if (this.selectedSort === "nameAsc") {
-                return [...this.programs].sort((a, b) => a.title.localeCompare(b.title));
-            } else if (this.selectedSort === "nameDes") {
-                return [...this.programs].sort((a, b) => b.title.localeCompare(a.title));
-            } else if (this.selectedSort === "priceAsc") {
-                // return [...this.programs].sort((a, b) => a.price - b.price);
-                return this.programs.sort((a, b) => a.price - b.price);
-            } else if (this.selectedSort === "priceDes") {
-                return [...this.programs].sort((a, b) => b.price - a.price);
-            } else if (this.selectedSort === "ratingL") {
-                return [...this.programs].sort((a, b) => a.rating - b.rating);
-            } else if (this.selectedSort === "ratingH") {
-                return [...this.programs].sort((a, b) => b.rating - a.rating);
-            }
-            return this.programs;
-        },
+        // filteredPrograms(){
+        //     if (this.selectedFilter === "sports") {
+        //         return this.programs.filter(program => program.category === "sports");
+        //     } else if (this.selectedFilter === "music") {
+        //         return this.programs.filter(program => program.category === "music");
+        //     } else if (this.selectedFilter === "arts") {
+        //         return this.programs.filter(program => program.category === "arts");
+        //     } else if (this.selectedFilter === "education") {
+        //         return this.programs.filter(program => program.category === "education");
+        //     }
+        //     return this.programs;
+        // },
+        // sortedPrograms() {
+        //     if (this.selectedSort === "nameAsc") {
+        //         return this.programs.sort((a, b) => a.title.localeCompare(b.title));
+        //     } else if (this.selectedSort === "nameDes") {
+        //         return this.programs.sort((a, b) => b.title.localeCompare(a.title));
+        //     } else if (this.selectedSort === "priceAsc") {
+        //         //what is the difference between this two lines?
+        //         // return [...this.programs].sort((a, b) => a.price - b.price);  
+        //         return this.programs.sort((a, b) => a.price - b.price);
+        //     } else if (this.selectedSort === "priceDes") {
+        //         return this.programs.sort((a, b) => b.price - a.price);
+        //     } else if (this.selectedSort === "ratingL") {
+        //         return this.programs.sort((a, b) => a.rating - b.rating);
+        //     } else if (this.selectedSort === "ratingH") {
+        //         return this.programs.sort((a, b) => b.rating - a.rating);
+        //     }
+        //     return this.programs;
+        // },
+
+            filteredAndSorted() {
+                let filtered = this.programs;
+        
+                // Apply filtering
+                if (this.selectedFilter === "sports") {
+                    filtered = filtered.filter(program => program.category === "Sports");
+                } else if (this.selectedFilter === "music") {
+                    filtered = filtered.filter(program => program.category === "Music");
+                } else if (this.selectedFilter === "art") {
+                    filtered = filtered.filter(program => program.category === "Art");
+                } else if (this.selectedFilter === "education") {
+                    filtered = filtered.filter(program => program.category === "Education");
+                }
+        
+                // Apply sorting
+                if (this.selectedSort === "nameAsc") {
+                    filtered = filtered.sort((a, b) => a.title.localeCompare(b.title));
+                } else if (this.selectedSort === "nameDes") {
+                    filtered = filtered.sort((a, b) => b.title.localeCompare(a.title));
+                } else if (this.selectedSort === "priceAsc") {
+                    filtered = filtered.sort((a, b) => a.price - b.price);
+                } else if (this.selectedSort === "priceDes") {
+                    filtered = filtered.sort((a, b) => b.price - a.price);
+                } else if (this.selectedSort === "ratingL") {
+                    filtered = filtered.sort((a, b) => a.rating - b.rating);
+                } else if (this.selectedSort === "ratingH") {
+                    filtered = filtered.sort((a, b) => b.rating - a.rating);
+                }
+        
+                return filtered;
+            },
+        
+
         // Returns an array of detailed program objects currently in the cart
         cartDetails() {
             return this.cart.map(cartItem => {
