@@ -89,7 +89,7 @@ button:disabled {
 
 main {
     padding: 40px;
-    padding-top: 13%;
+    padding-top: 170px;
 }
 
 .filSor {
@@ -119,10 +119,9 @@ select {
 }
 
 .program-container {
-    display: grid;
+    /* display: grid; */
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
-
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -135,7 +134,7 @@ select {
     box-shadow: 0 4px 8px rgba(248, 50, 0, 0.1);
     text-align: center;
     transition: .3s ease-in-out;
-    width: 20%;
+    width: 250px;
 }
 
 .program-card:hover {

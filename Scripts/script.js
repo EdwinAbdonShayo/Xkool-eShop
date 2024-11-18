@@ -43,35 +43,115 @@ let xkoolWebstore = new Vue({
             this.showPage = !this.showPage;
         },
         submitCheckOut() {
-            // alert("Order placed successfully!");
-
+            // Validate the form inputs
+            if (!this.order.name || !this.order.phone || !this.order.address || !this.order.city) {
+                alert("Please fill in all the required fields before placing an order.");
+                return;
+            }
+            
+            if (this.cart.length === 0) {
+                alert("Your cart is empty. Please add items before checking out.");
+                return;
+            }
+        
+            // Prepare the order payload
             const orderData = {
                 name: this.order.name,
                 phone: this.order.phone,
                 address: this.order.address,
                 city: this.order.city,
-                programs: this.cartDetails,
-                price: this.price,
+                programs: this.cart.map(item => ({
+                    id: item.id,
+                    count: item.count
+                })),
+                price: this.totalPrice // Use the computed property for the total price
             };
-
+        
+            // Send the order data to the server
             fetch('http://localhost:5454/orders', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(orderData)
+                },
+                body: JSON.stringify(orderData)
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to place the order. Status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
-                console.log(data)
+                console.log("Order response:", data);
                 alert("Order placed successfully!");
+        
+                // Update available spaces for each program
+                const updatePromises = this.cart.map(item => {
+                    const program = this.programs.find(p => p.id === item.id);
+                    if (program) {
+                        const updatedSpaces = program.availableSpaces - item.count;
+        
+                        // Send PUT request to update available spaces
+                        return fetch(`http://localhost:5454/programs/${item.id}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ availableSpaces: updatedSpaces })
+                        })
+                        .then(updateResponse => {
+                            if (!updateResponse.ok) {
+                                throw new Error(`Failed to update spaces for program ${item.id}. Status: ${updateResponse.status}`);
+                            }
+                            return updateResponse.json();
+                        })
+                        .then(updateData => {
+                            console.log(`Updated program ${item.id}:`, updateData);
+                        })
+                        .catch(updateError => {
+                            console.error(`Error updating spaces for program ${item.id}:`, updateError);
+                        });
+                    }
+                    return Promise.resolve(); // Return a resolved promise for items without a matching program
+                });
+        
+                // Wait for all update promises to complete
+                return Promise.all(updatePromises);
+            })
+            .then(() => {
+                // Reset cart and user details after successful checkout
                 this.cart = [];
-                // this.showPage = true;
+                this.order = { 
+                    name: "",
+                    phone: "",
+                    address: "",
+                    city: ""
+                };
+                this.showPage = true;
+        
+                // Refresh program list
+                this.refreshPrograms();
             })
             .catch(error => {
-                console.error('Error making an order', error);
+                console.error('Error during checkout process:', error);
+                alert("An error occurred while placing your order. Please try again.");
             });
-            
+        },
+        refreshPrograms() {
+            fetch('http://localhost:5454/programs')
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error(`Failed to fetch programs. Status: ${res.status}`);
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    this.programs = data;
+                    console.log("Programs updated:", this.programs);
+                })
+                .catch(err => {
+                    console.error('Error fetching programs:', err);
+                });
         },
         canAddtoCart(program) {
             return program.availableSpaces > this.cartItemCount(program.id);
@@ -97,68 +177,37 @@ let xkoolWebstore = new Vue({
             // Total count of items in the cart
             return this.cartCount();
         },
-        // filteredPrograms(){
-        //     if (this.selectedFilter === "sports") {
-        //         return this.programs.filter(program => program.category === "sports");
-        //     } else if (this.selectedFilter === "music") {
-        //         return this.programs.filter(program => program.category === "music");
-        //     } else if (this.selectedFilter === "arts") {
-        //         return this.programs.filter(program => program.category === "arts");
-        //     } else if (this.selectedFilter === "education") {
-        //         return this.programs.filter(program => program.category === "education");
-        //     }
-        //     return this.programs;
-        // },
-        // sortedPrograms() {
-        //     if (this.selectedSort === "nameAsc") {
-        //         return this.programs.sort((a, b) => a.title.localeCompare(b.title));
-        //     } else if (this.selectedSort === "nameDes") {
-        //         return this.programs.sort((a, b) => b.title.localeCompare(a.title));
-        //     } else if (this.selectedSort === "priceAsc") {
-        //         //what is the difference between this two lines?
-        //         // return [...this.programs].sort((a, b) => a.price - b.price);  
-        //         return this.programs.sort((a, b) => a.price - b.price);
-        //     } else if (this.selectedSort === "priceDes") {
-        //         return this.programs.sort((a, b) => b.price - a.price);
-        //     } else if (this.selectedSort === "ratingL") {
-        //         return this.programs.sort((a, b) => a.rating - b.rating);
-        //     } else if (this.selectedSort === "ratingH") {
-        //         return this.programs.sort((a, b) => b.rating - a.rating);
-        //     }
-        //     return this.programs;
-        // },
-
-            filteredAndSorted() {
-                let filtered = this.programs;
-        
-                // Apply filtering
-                if (this.selectedFilter === "sports") {
-                    filtered = filtered.filter(program => program.category === "Sports");
-                } else if (this.selectedFilter === "music") {
-                    filtered = filtered.filter(program => program.category === "Music");
-                } else if (this.selectedFilter === "art") {
-                    filtered = filtered.filter(program => program.category === "Art");
-                } else if (this.selectedFilter === "education") {
-                    filtered = filtered.filter(program => program.category === "Education");
-                }
-        
-                // Apply sorting
-                if (this.selectedSort === "nameAsc") {
-                    filtered = filtered.sort((a, b) => a.title.localeCompare(b.title));
-                } else if (this.selectedSort === "nameDes") {
-                    filtered = filtered.sort((a, b) => b.title.localeCompare(a.title));
-                } else if (this.selectedSort === "priceAsc") {
-                    filtered = filtered.sort((a, b) => a.price - b.price);
-                } else if (this.selectedSort === "priceDes") {
-                    filtered = filtered.sort((a, b) => b.price - a.price);
-                } else if (this.selectedSort === "ratingL") {
-                    filtered = filtered.sort((a, b) => a.rating - b.rating);
-                } else if (this.selectedSort === "ratingH") {
-                    filtered = filtered.sort((a, b) => b.rating - a.rating);
-                }
-        
-                return filtered;
-            },
+        filteredAndSorted() {
+            let filtered = this.programs;
+    
+            // Apply filtering
+            if (this.selectedFilter === "sports") {
+                filtered = filtered.filter(program => program.category === "Sports");
+            } else if (this.selectedFilter === "music") {
+                filtered = filtered.filter(program => program.category === "Music");
+            } else if (this.selectedFilter === "art") {
+                filtered = filtered.filter(program => program.category === "Art");
+            } else if (this.selectedFilter === "education") {
+                filtered = filtered.filter(program => program.category === "Education");
+            }
+    
+            // Apply sorting
+            if (this.selectedSort === "nameAsc") {
+                filtered = filtered.sort((a, b) => a.title.localeCompare(b.title));
+            } else if (this.selectedSort === "nameDes") {
+                filtered = filtered.sort((a, b) => b.title.localeCompare(a.title));
+            } else if (this.selectedSort === "priceAsc") {
+                filtered = filtered.sort((a, b) => a.price - b.price);
+            } else if (this.selectedSort === "priceDes") {
+                filtered = filtered.sort((a, b) => b.price - a.price);
+            } else if (this.selectedSort === "ratingL") {
+                filtered = filtered.sort((a, b) => a.rating - b.rating);
+            } else if (this.selectedSort === "ratingH") {
+                filtered = filtered.sort((a, b) => b.rating - a.rating);
+            }
+    
+            return filtered;
+        },
         
 
         // Returns an array of detailed program objects currently in the cart
