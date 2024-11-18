@@ -66,7 +66,7 @@
                         <img :src="program.image" alt="Program Image">
                         <h3>{{ program.title }}</h3>
                         <p>{{ program.description }}</p>
-                        <p>Price: Rs{{ program.price }}</p>
+                        <p>Price: £ {{ program.price }}</p>
                         <p>Location: {{ program.location }}</p>
                         <button v-if="canAddtoCart(program)" @click="addItemtoCart(program)">Enroll</button>
                         <button v-else :disabled="true">Enroll</button>
@@ -91,16 +91,19 @@
                         <ul>
                             <!-- Loop through cart items and display details -->
                             <li v-for="program in cartDetails" :key="program.id">
-                                <p>Program ID: {{ program.id }} </p>
-                                <p><strong>{{ program.title }}</strong></p>
-                                <p>Price: Rs{{ program.price }}</p>
-                                <p v-if="program.count > 1">Spaces: {{ program.count }}</p>
-                                <button @click="removeFromCart(program)">Remove</button>
+                                <div class="cartImg"><img :src="program.image" alt="Program Image"></div>
+                                <div>
+                                    <p>Program ID: {{ program.id }} </p>
+                                    <p><strong>{{ program.title }}</strong></p>
+                                    <p>Price: £ {{ program.price }}</p>
+                                    <p v-if="program.count > 1">Spaces: {{ program.count }}</p>
+                                    <button @click="removeFromCart(program)">Remove</button>
+                                </div>
                             </li>
                         </ul>
                         <!-- <p v-if="cartDetails.length === 0">Your cart is empty!</p> -->
                         <hr>
-                        <h3>Total: Rs {{ totalPrice }}</h3>
+                        <h3>Total: £ {{ totalPrice }}</h3>
                     </div>
                     <form>
                         <h1>Checkout</h1>

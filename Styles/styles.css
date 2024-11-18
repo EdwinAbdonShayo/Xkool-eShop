@@ -242,3 +242,21 @@ form input {
     gap: 20px;
     width: 350px;
 }
+
+li {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    background: hsla(17, 100%, 45%, 0.4);
+    margin: 5px;
+    padding: 1%;
+    border-radius: 15px;
+}
+
+li img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;;
+}
