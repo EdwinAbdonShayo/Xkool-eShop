@@ -14,7 +14,7 @@
         <div id="xkool-webstore">
             <header>
                 <div class="logo">
-                    <img src="Media/logo.jpg" alt="eShop Logo">
+                    <img src="http://localhost:5454/Media/logo.jpg" alt="eShop Logo">
                 </div>
                 <nav>
                     <a href="#">Home</a>
@@ -63,7 +63,7 @@
                 <!-- Product Grid -->
                 <div class="program-container" v-if="showPage">
                     <div class="program-card" v-for="program in filteredAndSorted">
-                        <img :src="program.image" alt="Program Image">
+                        <img :src="'http://localhost:5454/' + program.image" alt="Program Image">
                         <h3>{{ program.title }}</h3>
                         <p>{{ program.description }}</p>
                         <p>Price: £ {{ program.price }}</p>
@@ -91,7 +91,7 @@
                         <ul>
                             <!-- Loop through cart items and display details -->
                             <li v-for="program in cartDetails" :key="program.id">
-                                <div class="cartImg"><img :src="program.image" alt="Program Image"></div>
+                                <div class="cartImg"><img :src="'http://localhost:5454/' + program.image" alt="Program Image"></div>
                                 <div>
                                     <p>Program ID: {{ program.id }} </p>
                                     <p><strong>{{ program.title }}</strong></p>

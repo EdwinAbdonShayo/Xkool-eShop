@@ -251,12 +251,12 @@ li {
     background: hsla(17, 100%, 45%, 0.4);
     margin: 5px;
     padding: 1%;
-    border-radius: 15px;
+    border-radius: 8px;
 }
 
 li img {
     width: 220px;
     height: 220px;
     object-fit: cover;
-    border-radius: 10px;;
+    border-radius: 5px;;
 }
