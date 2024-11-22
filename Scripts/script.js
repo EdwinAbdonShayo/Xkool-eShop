@@ -229,7 +229,7 @@ let xkoolWebstore = new Vue({
         }
     },
     created() {
-        fetch('http://localhost:5454/programs')
+        fetch('https://xkool-eshop-backend.onrender.com/programs')
             .then( res => {
                 if (!res.ok) {
                 throw new Error (`Status: {res.status}`);
