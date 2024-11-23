@@ -37,8 +37,11 @@
     
             <main>
                 <div class="filSor" v-if="showPage">
+                    <div class="search">
+                        <input type="search" name="search" id="search" v-model="searchTxt" placeholder="Search for programs">
+                    </div>
                     <div class="filter">
-                        <label for="filter">Select Filter</label>
+                        <label for="filters">Select Filter</label>
                         <select name="filters" id="filters" v-model="selectedFilter">
                             <option value="">Default</option>
                             <option value="sports">Sports</option>
@@ -48,15 +51,20 @@
                         </select>
                     </div>
                     <div class="sort">
-                        <label for="sort">Select Sort</label>
+                        <label for="sorts">Select Sort</label>
                         <select name="sorts" id="sorts" v-model="selectedSort">
                             <option value="">Default</option>
-                            <option value="nameAsc">Names (A - Z)</option>
-                            <option value="nameDes">Names (Z - A)</option>
-                            <option value="priceAsc">Price (Low - High)</option>
-                            <option value="priceDes">Price (High - Low)</option>
-                            <option value="ratingL">Rating (Lowest)</option>
-                            <option value="ratingH">Rating (Highest)</option>
+                            <option value="name">Names</option>
+                            <option value="price">Price</option>
+                            <option value="rating">Rating</option>
+                        </select>
+                    </div>
+                    <div class="sortOption">
+                        <label for="sortOptions">Sort Option</label>
+                        <select name="sortOptions" id="sortOptions" v-model="sortOption">
+                            <option value="">Default</option>
+                            <option value="asc">Ascending</option>
+                            <option value="des">Descending</option>
                         </select>
                     </div>
                 </div>

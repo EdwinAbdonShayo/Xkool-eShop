@@ -97,12 +97,27 @@ main {
     display: flex;
     width: 90%;
     flex-direction: row;
-    align-items: center;
+    align-items: end;
     justify-content: end;
+}
+
+.search input {
+    margin: 1%;
+    height: 30px;
+    width: 400px;
+    font-family: Comfortaa;
+    font-weight: 600;
+    border:  hsla(17, 100%, 45%, .9) 1.5px solid;
+    border-radius: 10px;
+    padding-inline: 10px;
 }
 
 .filter {
     margin-inline: 2%;
+}
+
+.sortOption {
+    margin-inline-start: 2%;
 }
 
 select {

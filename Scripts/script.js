@@ -2,13 +2,15 @@
 let xkoolWebstore = new Vue({
     el: '#xkool-webstore',
     data: {
-        // appUrl: 'http://localhost:5454',
-        appUrl: 'https://xkool-eshop-backend.onrender.com',
+        appUrl: 'http://localhost:5454',
+        // appUrl: 'https://xkool-eshop-backend.onrender.com',
         showPage: true,
         cart: [],
         programs: [],
+        sortOption:"",
         selectedSort: "",
         selectedFilter: "",
+        searchTxt: "",
         order: {
             name: "",
             phone: "",
@@ -191,23 +193,19 @@ let xkoolWebstore = new Vue({
             } else if (this.selectedFilter === "education") {
                 filtered = filtered.filter(program => program.category === "Education");
             }
-    
-            // Apply sorting
-            if (this.selectedSort === "nameAsc") {
-                filtered = filtered.sort((a, b) => a.title.localeCompare(b.title));
-            } else if (this.selectedSort === "nameDes") {
-                filtered = filtered.sort((a, b) => b.title.localeCompare(a.title));
-            } else if (this.selectedSort === "priceAsc") {
-                filtered = filtered.sort((a, b) => a.price - b.price);
-            } else if (this.selectedSort === "priceDes") {
-                filtered = filtered.sort((a, b) => b.price - a.price);
-            } else if (this.selectedSort === "ratingL") {
-                filtered = filtered.sort((a, b) => a.rating - b.rating);
-            } else if (this.selectedSort === "ratingH") {
-                filtered = filtered.sort((a, b) => b.rating - a.rating);
+
+            if (this.selectedSort) {
+                console.log(this.sortOption);
+                const isAscending = this.sortOption === "" || this.sortOption === "asc";
+                filtered.sort((a, b) => {
+                    if (this.selectedSort === "name") return isAscending ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
+                    if (this.selectedSort === "price") return isAscending ? a.price - b.price : b.price - a.price;
+                    if (this.selectedSort === "rating") return isAscending ? a.rating - b.rating : b.rating - a.rating;
+                });
             }
-    
+        
             return filtered;
+
         },
         
 
