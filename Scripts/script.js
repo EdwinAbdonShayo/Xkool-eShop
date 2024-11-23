@@ -1,8 +1,9 @@
 
-
 let xkoolWebstore = new Vue({
     el: '#xkool-webstore',
     data: {
+        // appUrl: 'http://localhost:5454',
+        appUrl: 'https://xkool-eshop-backend.onrender.com',
         showPage: true,
         cart: [],
         programs: [],
@@ -66,9 +67,9 @@ let xkoolWebstore = new Vue({
                 })),
                 price: this.totalPrice // Use the computed property for the total price
             };
-            //http://localhost:5454
+
             // Send the order data to the server
-            fetch('https://xkool-eshop-backend.onrender.com/orders', {
+            fetch(`${this.appUrl}/orders`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -92,7 +93,7 @@ let xkoolWebstore = new Vue({
                         const updatedSpaces = program.availableSpaces - item.count;
         
                         // Send PUT request to update available spaces
-                        return fetch(`https://xkool-eshop-backend.onrender.com/programs/${item.id}`, {
+                        return fetch(`${this.appUrl}/programs/${item.id}`, {
                             method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -138,7 +139,7 @@ let xkoolWebstore = new Vue({
             });
         },
         refreshPrograms() {
-            fetch('https://xkool-eshop-backend.onrender.com/programs')
+            fetch(`${this.appUrl}/programs`)
                 .then(res => {
                     if (!res.ok) {
                         throw new Error(`Failed to fetch programs. Status: ${res.status}`);
@@ -229,7 +230,7 @@ let xkoolWebstore = new Vue({
         }
     },
     created() {
-        fetch('https://xkool-eshop-backend.onrender.com/programs')
+        fetch(`${this.appUrl}/programs`)
             .then( res => {
                 if (!res.ok) {
                 throw new Error (`Status: {res.status}`);
