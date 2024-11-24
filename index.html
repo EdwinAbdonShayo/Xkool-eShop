@@ -38,7 +38,7 @@
             <main>
                 <div class="filSor" v-if="showPage">
                     <div class="search">
-                        <input type="search" name="search" id="search" v-model="searchTxt" placeholder="Search for programs">
+                        <input type="search" name="search" id="search" v-model="searchTxt" @input="searchPrograms" placeholder="Search for programs">
                     </div>
                     <div class="filter">
                         <label for="filters">Select Filter</label>
@@ -60,7 +60,7 @@
                         </select>
                     </div>
                     <div class="sortOption">
-                        <label for="sortOptions">Sort Option</label>
+                        <label for="sortOptions">Sorting Option</label>
                         <select name="sortOptions" id="sortOptions" v-model="sortOption">
                             <option value="">Default</option>
                             <option value="asc">Ascending</option>

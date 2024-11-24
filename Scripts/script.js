@@ -2,8 +2,8 @@
 let xkoolWebstore = new Vue({
     el: '#xkool-webstore',
     data: {
-        appUrl: 'http://localhost:5454',
-        // appUrl: 'https://xkool-eshop-backend.onrender.com',
+        // appUrl: 'http://localhost:5454',
+        appUrl: 'https://xkool-eshop-backend.onrender.com',
         showPage: true,
         cart: [],
         programs: [],
@@ -173,6 +173,27 @@ let xkoolWebstore = new Vue({
         },
         itemsLeft(program) {
             return program.availableSpaces - this.cartItemCount(program.id);
+        },
+        searchPrograms() {
+            if (!this.searchTxt.trim()) {
+                this.refreshPrograms();
+                return;
+            }
+
+            fetch(`${this.appUrl}/search?term=${encodeURIComponent(this.searchTxt)}`)
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error(`Failed to fetch search results. Status: ${res.status}`);
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    this.programs = data; // Update programs with search results
+                    console.log("Search results:", data);
+                })
+                .catch(err => {
+                    console.error('Error searching programs:', err);
+                });
         }
     },
     computed: {
@@ -218,9 +239,6 @@ let xkoolWebstore = new Vue({
                 }
                 return null;
             }).filter(item => item !== null);
-            // return this.cart.map(cartItemId => {
-            //     return this.programs.find(program => program.id === cartItemId);
-            // });
         },
         // Calculates the total price of all items in the cart
         totalPrice() {
