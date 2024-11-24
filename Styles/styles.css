@@ -35,7 +35,7 @@ header {
 }
 
 .logo img {
-    width: 100px;
+    width: 70px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -56,6 +56,12 @@ nav a {
 
 nav a:hover {
     color: hsla(0, 0%, 100%, 1);
+}
+
+.title {
+    color: hsla(0, 0%, 100%, 1);
+    font-size: large;
+    font-weight: bold;
 }
 
 button {
@@ -173,6 +179,10 @@ select {
 .program-card p {
     font-size: 1rem;
     color: #555;
+}
+
+.program-card button {
+    margin-block: .5%;
 }
 
 #allout {

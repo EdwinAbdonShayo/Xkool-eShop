@@ -16,13 +16,16 @@
                 <div class="logo">
                     <img :src="`${appUrl}/Media/logo.jpg`" alt="eShop Logo">
                 </div>
-                <nav>
+                <div class="title">
+                    Xkool eShop
+                </div>
+                <!-- <nav>
                     <a href="#">Home</a>
                     <div>|</div>
                     <a href="#">About Us</a>
                     <div>|</div>
                     <a href="#">Contact Us</a>
-                </nav>
+                </nav> -->
                 <div class="cart">
                     <button @click="showCheckOut" v-if="cart.length >= 1">
                         Cart
