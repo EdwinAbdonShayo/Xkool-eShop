@@ -47,8 +47,15 @@ let xkoolWebstore = new Vue({
         },
         submitCheckOut() {
             // Validate the form inputs
-            if (!this.order.name || !this.order.phone || !this.order.address || !this.order.city) {
-                alert("Please fill in all the required fields before placing an order.");
+            if (
+                !this.order.name || 
+                !/^[a-zA-Z\s]+$/.test(this.order.name) || // Name must only contain letters and spaces
+                !this.order.phone || 
+                !/^\d+$/.test(this.order.phone) || // Phone must only contain digits
+                !this.order.address || 
+                !this.order.city
+            ) {
+                alert("Please fill in all the required fields with valid values before placing an order.");
                 return;
             }
             
