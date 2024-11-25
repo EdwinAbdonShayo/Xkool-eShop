@@ -104,10 +104,11 @@
                             <li v-for="program in cartDetails" :key="program.id">
                                 <div class="cartImg"><img :src="`${appUrl}/` + program.image" alt="Program Image"></div>
                                 <div>
-                                    <p>Program ID: {{ program.id }} </p>
                                     <p><strong>{{ program.title }}</strong></p>
+                                    <p>Location: {{ program.location }} </p>
                                     <p>Price: £ {{ program.price }}</p>
-                                    <p v-if="program.count > 1">Spaces: {{ program.count }}</p>
+                                    <!-- <p v-if="program.count > 1">Spaces: {{ program.count }}</p> -->
+                                    <p>Spaces: {{ program.count }}</p>
                                     <button @click="removeFromCart(program)">Remove</button>
                                 </div>
                             </li>
@@ -130,6 +131,7 @@
                             <p>Phone: <strong> {{ order.phone }} </strong></p>
                             <p>Address: <strong> {{ order.address }}</strong></p>
                             <p>City: <strong> {{ order.city }} </strong></p>
+                            <p>Total Price:<strong>£ {{ totalPrice }}</strong></p>
                         </div>                        
                         <button @click="submitCheckOut">Checkout</button>
                     </div>
