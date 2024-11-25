@@ -131,13 +131,21 @@
                             <p>Phone: <strong> {{ order.phone }} </strong></p>
                             <p>Address: <strong> {{ order.address }}</strong></p>
                             <p>City: <strong> {{ order.city }} </strong></p>
-                            <p>Total Price:<strong>£ {{ totalPrice }}</strong></p>
+                            <p>Total Price:<strong> £ {{ totalPrice }}</strong></p>
                         </div>                        
                         <button @click="submitCheckOut">Checkout</button>
                     </div>
 
                 </div>
             </main>
+            <!-- Popup Section -->
+            <div v-if="popup.visible" class="popup-overlay">
+                <div class="popup">
+                    <h2>{{ popup.title }}</h2>
+                    <p>{{ popup.message }}</p>
+                    <button @click="hidePopup">OK</button>
+                </div>
+            </div>
         </div>
         <script src="Scripts/script.js"></script>
     </body>

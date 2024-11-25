@@ -5,6 +5,11 @@ let xkoolWebstore = new Vue({
         // appUrl: 'http://localhost:5454',
         appUrl: 'https://xkool-eshop-backend.onrender.com',
         showPage: true,
+        popup: {
+            visible: false,
+            title: "",
+            message: ""
+        },
         cart: [],
         programs: [],
         sortOption:"",
@@ -55,12 +60,12 @@ let xkoolWebstore = new Vue({
                 !this.order.address || 
                 !this.order.city
             ) {
-                alert("Please fill in all the required fields with valid values before placing an order.");
+                this.showPopup("Validation Error", "Please fill in all the required fields with valid values before placing an order.");
                 return;
             }
             
             if (this.cart.length === 0) {
-                alert("Your cart is empty. Please add items before checking out.");
+                this.showPopup("Cart Empty", "Your cart is empty. Please add items before checking out.");
                 return;
             }
         
@@ -74,7 +79,7 @@ let xkoolWebstore = new Vue({
                     id: item.id,
                     count: item.count
                 })),
-                price: this.totalPrice // Use the computed property for the total price
+                price: this.totalPrice 
             };
 
             // Send the order data to the server
@@ -93,7 +98,7 @@ let xkoolWebstore = new Vue({
             })
             .then(data => {
                 console.log("Order response:", data);
-                alert("Order placed successfully!");
+                this.showPopup("Order Success", "Your order has been placed successfully!");
         
                 // Update available spaces for each program
                 const updatePromises = this.cart.map(item => {
@@ -143,8 +148,8 @@ let xkoolWebstore = new Vue({
                 this.refreshPrograms();
             })
             .catch(error => {
-                console.error('Error during checkout process:', error);
-                alert("An error occurred while placing your order. Please try again.");
+                console.error(error);
+                this.showPopup("Error", "An error occurred while placing your order. Please try again.");
             });
         },
         refreshPrograms() {
@@ -201,7 +206,15 @@ let xkoolWebstore = new Vue({
                 .catch(err => {
                     console.error('Error searching programs:', err);
                 });
-        }
+        },
+        showPopup(title, message) {
+            this.popup.title = title;
+            this.popup.message = message;
+            this.popup.visible = true;
+        },
+        hidePopup() {
+            this.popup.visible = false;
+        },
     },
     computed: {
         count1() {
