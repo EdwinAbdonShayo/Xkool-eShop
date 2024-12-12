@@ -27,7 +27,7 @@ Xkool eShop is an online platform designed for students and parents/guardians to
 1. Clone the repository:
    >bash code
    ```
-   git clone https://github.com/yourusername/Xkool-eShop.git
+   git clone https://github.com/EdwinAbdonShayo/Xkool-eShop.git
    ```
 2. Navigate to the project directory:
     >bash code
